@@ -22,10 +22,10 @@ xos-redis-5cf77fd49f-q4l6f       1/1       Running   0          19m
 xos-tosca-58d6dd9f9b-wf8lv       1/1       Running   0          19m
 xos-ws-67cff6bbfd-9wm88          1/1       Running   0          13m 
 
-
 ```
 ### 访问xos-gui
 
+xos-gui可以通过nodeport进行访问, 例如 http://ip:30001/xos/#/dashboard
 ```
 # 查看gui访问端口
 [root@os-k8s-1 helm-charts]# kubectl get svc
