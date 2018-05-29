@@ -8,6 +8,7 @@ XOS将一切即服务（XaaS）组织原则引入CORD架构。在此过程中，
 XOS是CORD的独立组件，它作为整个CORD的“控制器”。虽然它最初在CORD之外有生命，但它不是一个独立的开源项目 - 它是在CORD的项目管理下进行。
 
 XOS由一组Docker容器组成，这些容器合作提供平台控制器功能，包括数据模型，同步器和北向API。以下是这些容器的清单:
+如果需要更加清楚的了解xos，可以访问下面的xos官网文档，那里有更加详细的介绍。
 
 |    name      | Description                           |Ports|
 | ------------ | ------------------------------------- | ------------|
@@ -23,3 +24,7 @@ gRPC除了xos-guiREST和web-socket的组合以外， 容器之间之间通信如
 
 ![PNG](images/xos-1.png)
 注:(目前最新版本6.0.0 已经移除consul和registrator) 
+
+
+
+xos官网文档: http://guide.xosproject.org/archguide/

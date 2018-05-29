@@ -41,40 +41,22 @@ xos-tosca             NodePort    10.68.202.189   <none>        9102:30007/TCP  
 xos-ws                NodePort    10.68.172.146   <none>        3000:30008/TCP        19m
 ```
 
-### Install ONOS to manage the core
-```
-[root@os-k8s-1 helm-charts]# helm install onos -n onos-cord 
+![PNG](images/xos-gui.png)
+
+
+### 修改xos默认密码
 
 ```
+[root@os-k8s-1 helm-charts]# cat adminpassword.yaml
 
-### 初始化onos-cord
+# Override XOS admin user and password values set in values.yaml
+#
+# helm install -f examples/adminuser-values.yaml xos-core -n xos-core
+# helm install -f examples/adminuser-values.yaml xos-profiles/rcord-lite -n rcord-lite
+
+xosAdminUser: &adminuser "admin"
+xosAdminPassword: &adminpass "test"
+
+[root@os-k8s-1 helm-charts]# helm install -f adminpassword.yaml xos-core -n xos-core
+
 ```
-[root@os-k8s-1 base-openstack]# cat  test.yaml
-tosca_definitions_version: tosca_simple_yaml_1_0
-imports:
-  - custom_types/onosservice.yaml
-  - custom_types/onosapp.yaml
-description: onos services
-topology_template:
-      node_templates:
-        service#ONOS_CORD:
-          type: tosca.nodes.ONOSService
-          properties:
-              name: ONOS_cord
-              kind: platform
-              no_container: true
-              rest_hostname: onos-cord-ui
-              rest_port: 8181
-        CORD_ONOS_app:
-          type: tosca.nodes.ONOSApp
-          requirements:
-              - owner:
-                  node: service#ONOS_CORD
-                  relationship: tosca.relationships.BelongsToOne
-          properties:
-              name: CORD_ONOS_app
-              dependencies: org.onosproject.drivers, org.onosproject.openflow, org.onosproject.netcfghostprovider, org.onosproject.segmentrouting, org.onosproject.vrouter
-
-[root@os-k8s-1 base-openstack]# http POST http://127.0.0.1:30007/run xos-username:admin@opencord.org xos-password:letmein @./test.yaml
-```
-
