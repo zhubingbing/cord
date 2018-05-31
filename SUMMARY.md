@@ -13,7 +13,7 @@
   * [2.1 xos ]
     * [2.1.1 xos 介绍](xos.md)
     * [2.1.2 xos 部署](install-xos-1.md)
-    * [2.1.3 xos 测试](chapter2.md)
+    * [2.1.3 xos 测试](xos-test.md)
 
   * [2.2 onos](chapter2.md)
     * [2.2.1 onos 介绍](chapter2.md)
