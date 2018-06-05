@@ -1,3 +1,35 @@
+### 使用kolla 部署openstack
+
+#### 使用kolla定制neutron-server镜像
+
+1. 提前安装好kolla环境
+
+2. 要科学上网翻墙，不然会导致一些包下载不了
+
+```
+# 安装kolla
+pip install kolla
+
+# 编辑 kolla-build.conf
+root@zbb-1:~# cat /etc/kolla/kolla-build.conf
+[neutron-server-plugin-networking-onos]
+type = git
+location = https://git.openstack.org/openstack/networking-onos
+reference = master
+
+# build 镜像
+
+kolla-build --base centos --type source neutron-server
+
+```
+
+#### 使用kolla-ansible 部署openstack平台
+
+1. kolla 目前不支持 neutron onos plugin, 需要一个patch支持https://review.openstack.org/#/c/572247/ 
+
+
+
+
 ### xos对接openstack
 
 目标：在xos创建网络，虚拟机 能同步到openstack平台
